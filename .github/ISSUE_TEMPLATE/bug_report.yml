@@ -1,0 +1,37 @@
+name: Bug 反馈
+description: 程序出错、数据不对、界面异常
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **提交前请先脱敏**：截图和日志里不要出现真实姓名、卡号、金额、商户。可以用界面左上角的「演示模式」（眼睛图标）截图。
+  - type: input
+    id: version
+    attributes:
+      label: 版本与平台
+      placeholder: "例：v1.0.0 / macOS 15 (M2)"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 期望的行为 vs 实际的行为
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 导入 xx 银行的流水
+        2. 打开去重复核页
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 报错信息 / 日志（脱敏后）
+      render: text

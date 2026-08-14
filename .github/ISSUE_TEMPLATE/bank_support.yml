@@ -1,0 +1,38 @@
+name: 支持新的银行/账单格式
+description: 请求支持你的银行流水或其他账单来源
+labels: [new-parser]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **不要上传真实账单文件。** 描述格式特征即可；表头/版式截图请先打码所有个人信息。
+  - type: input
+    id: bank
+    attributes:
+      label: 银行/来源名称
+      placeholder: "例：交通银行 借记卡"
+    validations:
+      required: true
+  - type: input
+    id: format
+    attributes:
+      label: 文件格式
+      placeholder: "例：PDF / CSV / Excel"
+    validations:
+      required: true
+  - type: textarea
+    id: export
+    attributes:
+      label: 导出入口
+      description: 在哪里能导出这份账单（APP 路径 / 网银路径）
+    validations:
+      required: true
+  - type: textarea
+    id: structure
+    attributes:
+      label: 格式描述（脱敏）
+      description: 表头有哪些列、账单首页有什么标题文字、有没有汇总栏（笔数/合计/余额）
+      placeholder: |
+        首页标题：「XX银行个人账户交易明细」
+        列：交易日期 | 摘要 | 借方金额 | 贷方金额 | 余额 | 对方户名
+        末页有汇总：合计笔数、借方合计、贷方合计
