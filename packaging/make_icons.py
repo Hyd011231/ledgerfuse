@@ -18,4 +18,4 @@ if __name__ == "__main__":
     img.save(out / "icon.ico", format="ICO",
              sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
     img.save(out / "icon.png")
-    print("生成：", ", ".join(p.name for p in out.glob("icon.*")))
+    print("icons:", ", ".join(p.name for p in out.glob("icon.*")))
