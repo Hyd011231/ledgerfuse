@@ -1,0 +1,29 @@
+# data & bills (personal financial data never enters the repo)
+backend/data/
+*.db
+*.db-journal
+*.csv
+*.pdf
+*.xlsx
+*.xls
+!frontend/**/*.csv
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# node
+node_modules/
+frontend/dist/
+
+# packaging output
+/build/
+/dist/
+packaging/icon.*
+
+# misc
+.DS_Store
+Thumbs.db
+*.log
