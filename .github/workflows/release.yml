@@ -1,0 +1,92 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            target: macos-arm64
+          - os: macos-13
+            target: macos-x64
+          - os: windows-latest
+            target: windows-x64
+          - os: ubuntu-22.04
+            target: linux-x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Install Linux WebView deps
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgirepository1.0-dev gir1.2-webkit2-4.1 \
+            gir1.2-gtk-3.0 libcairo2-dev pkg-config python3-dev
+
+      - name: Install Python deps
+        run: |
+          python -m pip install -U pip
+          pip install -r backend/requirements.txt pyinstaller pillow
+
+      - name: Install PyGObject (Linux)
+        if: runner.os == 'Linux'
+        run: pip install PyGObject
+
+      - name: Generate icons
+        run: python packaging/make_icons.py
+
+      - name: Build executable
+        run: pyinstaller ledgerfuse.spec --noconfirm
+
+      - name: Package (macOS)
+        if: runner.os == 'macOS'
+        run: ditto -c -k --keepParent "dist/LedgerFuse.app" "LedgerFuse-${{ matrix.target }}.zip"
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        run: Compress-Archive -Path dist/LedgerFuse -DestinationPath "LedgerFuse-${{ matrix.target }}.zip"
+
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        run: tar czf "LedgerFuse-${{ matrix.target }}.tar.gz" -C dist LedgerFuse
+
+      - name: Upload to release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            LedgerFuse-*.zip
+            LedgerFuse-*.tar.gz
+
+      - name: Upload artifact (manual run)
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        uses: actions/upload-artifact@v4
+        with:
+          name: LedgerFuse-${{ matrix.target }}
+          path: |
+            LedgerFuse-*.zip
+            LedgerFuse-*.tar.gz
