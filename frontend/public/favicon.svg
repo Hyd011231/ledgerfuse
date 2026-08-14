@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBD08A"/>
+      <stop offset="1" stop-color="#ED9560"/>
+    </linearGradient>
+    <clipPath id="sheet">
+      <rect x="226" y="262" width="572" height="516" rx="46"/>
+    </clipPath>
+  </defs>
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)"/>
+  <g clip-path="url(#sheet)">
+    <rect x="226" y="262" width="572" height="516" fill="#FFFCF7"/>
+    <rect x="226" y="262" width="62" height="516" fill="#F3CBA7"/>
+  </g>
+  <rect x="322" y="728" width="434" height="10" rx="5" fill="#E7CDB8"/>
+  <rect x="322" y="512" width="126" height="216" rx="63" fill="#F0A868"/>
+  <rect x="476" y="420" width="126" height="308" rx="63" fill="#E98C55"/>
+  <rect x="630" y="328" width="126" height="400" rx="63" fill="#D9713F"/>
+</svg>
