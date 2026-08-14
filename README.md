@@ -22,7 +22,7 @@
 | 平台 | 包 | 说明 |
 |---|---|---|
 | macOS (Apple Silicon) | `LedgerFuse-macos-arm64.zip` | 解压后把 App 拖进「应用程序」；首次打开若被拦截，右键 → 打开 |
-| macOS (Intel) | `LedgerFuse-macos-x64.zip` | 同上 |
+| macOS (Intel) | 暂无预编译包（GitHub 已停供 Intel 构建机） | 按下文「从源码运行」，几分钟即可 |
 | Windows | `LedgerFuse-windows-x64.zip` | 解压后运行 `LedgerFuse.exe` |
 | Linux | `LedgerFuse-linux-x64.tar.gz` | 需要 WebKitGTK：`sudo apt install gir1.2-webkit2-4.1`；没有桌面环境时 `./LedgerFuse --server` 用浏览器打开 |
 

@@ -51,13 +51,13 @@ def main():
     if "--server" not in sys.argv:
         try:
             import webview
-        except ImportError:
-            print("未找到 WebView 组件（Linux 需要 gir1.2-webkit2-4.1），改用浏览器打开。")
-        else:
+
             _start_server()
             webview.create_window("合账", url, width=1280, height=840, min_size=(960, 640))
             webview.start()
             return
+        except Exception as e:  # WebView 组件缺失/初始化失败（如 Linux 未装 WebKitGTK）
+            print(f"WebView 不可用（{e}），改用浏览器打开。")
 
     _start_server()
     webbrowser.open(url)
