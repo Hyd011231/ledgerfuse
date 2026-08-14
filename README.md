@@ -1,8 +1,19 @@
 # 合账 LedgerFuse
 
+<p>
+  <a href="../../releases"><img src="https://img.shields.io/github/v/release/Hyd011231/ledgerfuse?label=release&color=e98c55" alt="Release"></a>
+  <a href="../../actions/workflows/release.yml"><img src="https://img.shields.io/github/actions/workflow/status/Hyd011231/ledgerfuse/release.yml?label=build" alt="Build"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
+  <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-blue" alt="Platform">
+</p>
+
 **把银行卡流水、支付宝、微信账单合成一本账。** 纯本地个人记账：自动跨账单去重、自动分类、多维度收支统计，可选接入 Claude 做 AI 财务分析。所有数据只存在你自己电脑的 SQLite 里，不上传任何服务器。
 
 > Fuse your bank statements, Alipay and WeChat Pay bills into one local ledger — automatic cross-source deduplication, auto-categorization, rich statistics, and optional AI reports. All data stays on your machine.
+
+![看板](docs/images/dashboard.png)
+
+📖 **[使用教程](docs/guide.md)** · 🐛 [报告问题](../../issues/new/choose) · 🤝 [参与贡献](CONTRIBUTING.md)（欢迎新银行解析器）
 
 ## 下载安装
 
